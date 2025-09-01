@@ -5,7 +5,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const supplierRoutes = require('./src/routes/supplierRoutes');
 const { errorHandler, notFound } = require('./src/middleware/errorHandler');
-
+const purchaseOrderRoutes = require("./src/routes/purchaseOrderRoutes");
+const reportRoutes = require("./src/routes/reportRoutes");
 dotenv.config();
 const app = express();
 
@@ -19,6 +20,9 @@ connectDB();
 
 // Routes
 app.use('/api/suppliers', supplierRoutes);
+app.use("/api/purchase-orders", purchaseOrderRoutes);
+app.use("/api/reports", reportRoutes);
+
 
 // Healthcheck
 app.get('/health', (req, res) => res.json({ ok: true, time: new Date() }));
